@@ -9,30 +9,20 @@ fi
 mkdir $MAN_DIR
 cd $MAN_DIR
 
-repo init -u git://github.com/Angstrom-distribution/angstrom-manifest -b angstrom-v2016.06-yocto2.1
+repo init -u git://github.com/Angstrom-distribution/angstrom-manifest -b angstrom-v2016.12-yocto2.2
 
-sed -i 's/\(^.*<project name="linux4sam\/meta-atmel".*revision="df10071966a78f0a808216bd02cf961b171cbb0c" upstream=\)"master"\(.*$\)/\1"morty"\2/g' .repo/manifest.xml
-#sed -i 's/^.*meta-altera.*$/\ \ \<project name="kraj\/meta-altera" path="layers\/meta-altera" remote="github" revision="b5fe6b230fcd2e70dd4662778aadc318eb097678"\/\>/g' .repo/manifest.xml
-#sed -i 's/^.*meta-altera.*$/\ \ \<project name="\/data\/dwesterg\/github\/meta-altera-1" path="layers\/meta-altera" revision="master"\/\>/g' .repo/manifest.xml
-
-#sed -i '/git.yoctoproject.org/a \ \ \<remote fetch="ssh+git:\/\/sj-ice-nx2.altera.com" name="internal"\/\>' .repo/manifest.xml
-
-#sed -i '/meta-altera/a \ \ <project name="data/fae/dwesterg/public/git/meta-altera-atlas-sockit.git" path="layers/meta-altera-atlas-sockit" remote="internal" revision="master" upstream="master"/>' .repo/manifest.xml
+sed -i 's/^.*<project.*name="linux4sam\/meta-atmel".*$//g' .repo/manifest.xml
 
 repo sync
 
-cp -a ../meta-fluke-cda layers
+git clone https://github.com/fmhess/meta-fluke-cda.git layers/meta-fluke-cda
+
+sed -i '/meta-altera/a \ \ \$\{TOPDIR\}\/layers\/meta-fluke-cda \\' .repo/manifests/conf/bblayers.conf
+sed -i '/^.*meta-atmel.*$/d' .repo/manifests/conf/bblayers.conf
+
+cp ../local.conf .repo/manifests/conf/local.conf
 
 MACHINE=fluke-cda-nighthawk . ./setup-environment
-
-sed -i '/meta-altera/a \ \ \$\{TOPDIR\}\/layers\/meta-fluke-cda \\' conf/bblayers.conf
-
-# get rid of layers that cause conflicts
-#sed -i '/meta-photography/d' conf/bblayers.conf
-#sed -i '/meta-atmel/d' conf/bblayers.conf
-#sed -i '/meta-kde4/d' conf/bblayers.conf
-#sed -i '/meta-uav/d' conf/bblayers.conf
-#sed -i '/meta-edison/d' conf/bblayers.conf
 
 # Change download and cache dirs
 sed -i '/DL_DIR/d' conf/site.conf
@@ -51,3 +41,5 @@ echo '# BB_NO_NETWORK = "1"' >> conf/site.conf
 #echo "PREFERRED_VERSION_u-boot-socfpga = \"2016.03%\"" >> conf/local.conf
 #echo "UBOOT_CONFIG = \"de0-nano-soc\"" >> conf/local.conf
 #echo "GCCVERSION = \"linaro-4.9%\"" >> conf/local.conf
+
+
