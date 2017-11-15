@@ -9,7 +9,7 @@ fi
 mkdir $MAN_DIR
 cd $MAN_DIR
 
-repo init -u git://github.com/Angstrom-distribution/angstrom-manifest -b angstrom-v2016.12-yocto2.2
+repo init -u git://github.com/Angstrom-distribution/angstrom-manifest -b angstrom-v2017.06-yocto2.3
 
 sed -i 's/^.*<project.*name="linux4sam\/meta-atmel".*$//g' .repo/manifest.xml
 
