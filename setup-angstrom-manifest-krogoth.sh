@@ -1,5 +1,6 @@
 #!/bin/bash
-MAN_DIR=angstrom-manifest-krogoth-fluke-cda
+ANGSTROM_BRANCH=angstrom-v2017.06-yocto2.3
+MAN_DIR=${ANGSTROM_BRANCH}-manifest-fluke-cda
 
 if [ -d $MAN_DIR ]; then
 	echo "$MAN_DIR exists"
@@ -9,7 +10,7 @@ fi
 mkdir $MAN_DIR
 cd $MAN_DIR
 
-repo init -u git://github.com/Angstrom-distribution/angstrom-manifest -b angstrom-v2017.06-yocto2.3
+repo init -u git://github.com/Angstrom-distribution/angstrom-manifest -b ${ANGSTROM_BRANCH}
 
 sed -i 's/^.*<project.*name="linux4sam\/meta-atmel".*$//g' .repo/manifest.xml
 
@@ -27,8 +28,8 @@ MACHINE=fluke-cda-nighthawk . ./setup-environment
 # Change download and cache dirs
 sed -i '/DL_DIR/d' conf/site.conf
 #sed -i '/SSTATE_DIR/d' conf/site.conf
-echo "DL_DIR = \"\${TOPDIR}/../angstrom-manifest-downloads\"" >> conf/site.conf
-echo "SSTATE_DIR = \"\${TOPDIR}/../angstrom-manifest-sstate-cache\"" >> conf/site.conf
+echo "DL_DIR = \"\${TOPDIR}/../${ANGSTROM_BRANCH}-manifest-downloads\"" >> conf/site.conf
+echo "SSTATE_DIR = \"\${TOPDIR}/../${ANGSTROM_BRANCH}-manifest-sstate-cache\"" >> conf/site.conf
 
 echo '# SOURCE_MIRROR_URL ?= "file:///data/angstrom-builds/downloads/krogoth"' >> conf/site.conf
 echo '# INHERIT += "own-mirrors"' >> conf/site.conf
