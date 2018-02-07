@@ -20,6 +20,7 @@ git clone https://github.com/fmhess/meta-fluke-cda.git layers/meta-fluke-cda
 
 sed -i '/meta-altera/a \ \ \$\{TOPDIR\}\/layers\/meta-fluke-cda \\' .repo/manifests/conf/bblayers.conf
 sed -i '/^.*meta-atmel.*$/d' .repo/manifests/conf/bblayers.conf
+sed -i '/^.*meta-uav.*$/d' .repo/manifests/conf/bblayers.conf
 
 cp ../local.conf .repo/manifests/conf/local.conf
 
