@@ -13,10 +13,11 @@ cd $MAN_DIR
 repo init -u git://github.com/Angstrom-distribution/angstrom-manifest -b ${ANGSTROM_BRANCH}
 
 sed -i 's/^.*<project.*name="linux4sam\/meta-atmel".*$//g' .repo/manifest.xml
-# use specific versions of Angstrom and openembedded because they have broken the pyro branch to be unusable for us
-sed -i 's/revision="angstrom-v2017.06-yocto2.3"/revision="8e2f5bb1d814396b0487fe52e94d4ebd6a3634c5"/' .repo/manifest.xml
-sed -i 's|\(name="openembedded/openembedded-core"\)|\1 revision="ac2aad028daca6ea3aa0c0ccea8d528e896f8349"|' .repo/manifest.xml
-sed -i 's|\(name="openembedded/meta-openembedded"\)|\1 revision="dfbdd28d206a74bf264c2f7ee0f7b3e5af587796"|' .repo/manifest.xml
+
+# use specific versions of Angstrom and openembedded if they break things on the branch HEAD
+#sed -i 's/revision="angstrom-v2017.06-yocto2.3"/revision="8e2f5bb1d814396b0487fe52e94d4ebd6a3634c5"/' .repo/manifest.xml
+#sed -i 's|\(name="openembedded/openembedded-core"\)|\1 revision="ac2aad028daca6ea3aa0c0ccea8d528e896f8349"|' .repo/manifest.xml
+#sed -i 's|\(name="openembedded/meta-openembedded"\)|\1 revision="dfbdd28d206a74bf264c2f7ee0f7b3e5af587796"|' .repo/manifest.xml
 
 repo sync
 
