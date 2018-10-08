@@ -1,4 +1,5 @@
 angstrom-manifest-krogoth-fluke-cda
+angstrom-*-manifest
 angstrom-*-manifest-fluke-cda
 angstrom-*-manifest-downloads
 angstrom-*-manifest-sstate-cache
