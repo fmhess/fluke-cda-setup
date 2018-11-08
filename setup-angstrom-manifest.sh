@@ -5,8 +5,8 @@ if [ "$#" -ne 1 ]; then
   exit 1
 fi
 
-ANGSTROM_BRANCH=$1
-MAN_DIR=${ANGSTROM_BRANCH}-manifest
+ANGSTROM_BRANCH="$1"
+MAN_DIR="${ANGSTROM_BRANCH}-manifest"
 
 if [ -d $MAN_DIR ]; then
 	echo "$MAN_DIR exists"
