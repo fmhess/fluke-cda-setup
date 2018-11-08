@@ -1,5 +1,11 @@
 #!/bin/bash
-ANGSTROM_BRANCH=angstrom-v2017.06-yocto2.3-fluke-cda
+
+if [ "$#" -ne 1 ]; then
+  echo "Usage: $0 ANGSTROM_BRANCH" >&2
+  exit 1
+fi
+
+ANGSTROM_BRANCH=$1
 MAN_DIR=${ANGSTROM_BRANCH}-manifest
 
 if [ -d $MAN_DIR ]; then
