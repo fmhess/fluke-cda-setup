@@ -25,5 +25,8 @@ MACHINE=fluke-cda-nighthawk . ./setup-environment
 sed -i "s/DL_DIR.*/DL_DIR = \"\$\{TOPDIR\}\/..\/${ANGSTROM_BRANCH}-manifest-downloads\/\"/" conf/site.conf
 sed -i "s/SSTATE_DIR.*/SSTATE_DIR = \"\$\{TOPDIR\}\/..\/${ANGSTROM_BRANCH}-manifest-sstate-cache\/\"/" conf/site.conf
 
-
-
+cat <<EndOfFile >> conf/site.conf
+#uncomment to generate source tarballs under the deploy directory
+#INHERIT += "archiver"
+#ARCHIVER_MODE[src] = "patched"
+EndOfFile
