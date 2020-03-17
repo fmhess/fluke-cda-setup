@@ -19,7 +19,7 @@ cd $MAN_DIR
 repo init -u git://github.com/fmhess/angstrom-manifest -b ${ANGSTROM_BRANCH}
 repo sync
 
-MACHINE=fluke-cda-nighthawk . ./setup-environment
+MACHINE=fluke-cda-nighthawk source ./setup-environment "."
 
 # Change download and cache dirs
 sed -i "s/DL_DIR.*/DL_DIR = \"\$\{TOPDIR\}\/..\/${ANGSTROM_BRANCH}-manifest-downloads\/\"/" conf/site.conf
