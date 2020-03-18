@@ -17,7 +17,7 @@ mkdir $MAN_DIR
 cd $MAN_DIR
 
 repo init -u git://github.com/fmhess/angstrom-manifest -b ${ANGSTROM_BRANCH}
-repo sync
+python3 .repo/repo/repo sync
 
 MACHINE=fluke-cda-nighthawk source ./setup-environment "."
 
