@@ -3,4 +3,5 @@ angstrom-*-manifest
 angstrom-*-manifest-fluke-cda
 angstrom-*-manifest-downloads
 angstrom-*-manifest-sstate-cache
+poky-*
 
