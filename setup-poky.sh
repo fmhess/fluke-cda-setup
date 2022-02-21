@@ -22,8 +22,8 @@ repo init -u https://github.com/fmhess/poky-fluke-cda-manifest -b ${POKY_BRANCH}
 python3 .repo/repo/repo sync
 
 mkdir -p build/conf/
-ln -sr .repo/manifests/conf/local.conf build/conf/
-ln -sr .repo/manifests/conf/bblayers.conf build/conf/
+ln -sr manifest/conf/local.conf build/conf/
+ln -sr manifest/conf/bblayers.conf build/conf/
 
 DEFAULT_MACHINE="fluke-cda-nighthawk"
 cat <<EndOfFile > build/conf/site.conf
