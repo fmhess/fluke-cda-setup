@@ -17,7 +17,8 @@ fi
 mkdir $POKY_TOP_DIR
 cd $POKY_TOP_DIR
 
-repo init -u git://github.com/fmhess/poky-fluke-cda-manifest -b ${POKY_BRANCH}
+repo init -u https://github.com/fmhess/poky-fluke-cda-manifest -b ${POKY_BRANCH} ||
+	python3 .repo/repo/repo init -u https://github.com/fmhess/poky-fluke-cda-manifest -b ${POKY_BRANCH}
 python3 .repo/repo/repo sync
 
 mkdir -p build/conf/
